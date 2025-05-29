@@ -16,7 +16,7 @@ class Transacao: #classe base
 
     @staticmethod
     def _gerar_id_hex():
-        """Gera um ID de 4 dígitos em hexadecimal."""
+        # Gera um ID de 4 dígitos em hexadecimal.
         return f"{random.randint(0, 65535):04X}"
 
     @staticmethod
@@ -46,7 +46,7 @@ class Transacao: #classe base
         return tipo
     
     def to_dict(self) -> dict:
-        """Converte o objeto Transacao em um dicionário para serialização."""
+        # Converte o objeto Transacao em um dicionário para serialização.
         return {
             'id': self.id,
             'valor': self.valor,
@@ -57,7 +57,7 @@ class Transacao: #classe base
 
     @classmethod
     def from_dict(cls, data):
-        """Cria um objeto Transacao a partir de um dicionário."""
+        # Cria um objeto Transacao a partir de um dicionário.
         data_obj = datetime.fromisoformat(data['data'])
         return cls(
             valor=data['valor'],
@@ -71,19 +71,3 @@ class Transacao: #classe base
         return (f"Transação n°{self.id}: {self.valor:.2f} "
                 f"em {self.data.strftime('%Y-%m-%d')} "
                 f"[{self.categoria}] - {self.tipo}")
-
-
-# trocar valuerrror
-#while True:
-#   valor = input("valor: "))
-#   if valor not in (int, float):
-#       print("Valor deve ser numérico. Tente novamente.")
-#   if (valor <= 0):
-#       print("Valor deve ser positivo. Tente novamente.")
-#   break
-#valor = (int(input("Valor: ")))
-#categoria = input("Categoria: ")    
-#tipo = input("Tipo: ")
-
-#obj = Transacao(valor, categoria, tipo)
-#print(obj)

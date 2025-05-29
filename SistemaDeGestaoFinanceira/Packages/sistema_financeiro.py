@@ -1,4 +1,4 @@
-from .serializacao import salvar_dados, carregar_dados
+from .serializacao import salvar_dados, carregar_dados, remover_dados
 from .transacao import Transacao
 
 class GerenciadorTransacoes:

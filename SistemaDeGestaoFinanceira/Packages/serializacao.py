@@ -3,11 +3,12 @@ import os
 from datetime import datetime
 from .transacao import Transacao
 from .categoria import Categoria
+from .orcamento import Orcamento
 
 Caminho_arquivo = "SistemaDeGestaoFinanceira/Data/transacoes.json"
 
 def salvar_dados(transacoes: list[Transacao], saldo: float) -> None:
-    """Salva as transações e o saldo em um arquivo JSON."""
+    # Salva as transações e o saldo em um arquivo JSON.
     dados = {
         "saldo": saldo,
         "transacoes": [transacao.to_dict() for transacao in transacoes]
@@ -17,7 +18,7 @@ def salvar_dados(transacoes: list[Transacao], saldo: float) -> None:
         json.dump(dados, arquivo, ensure_ascii=False, indent=4)
 
 def carregar_dados() -> tuple[list[Transacao], float]:
-    """Carrega as transações e o saldo de um arquivo JSON."""
+    # Carrega as transações e o saldo de um arquivo JSON.
     if not os.path.exists(Caminho_arquivo):
         return [], 0.0
     try:
@@ -40,3 +41,19 @@ def carregar_dados() -> tuple[list[Transacao], float]:
         except Exception as e:
             print(f"Erro ao carregar transação: {e} - Dados: {transacao_dict}")
     return transacoes, saldo
+
+def remover_dados(id_transacao: str)-> bool:
+    transacoes, saldo = carregar_dados()
+    transacao_removida = None
+    for transacao in transacoes:
+        if transacao.id == id_transacao:
+            transacao_removida = transacao
+            break
+    if not transacao_removida:
+        return False # Não encontrou a transação com o ID fornecido
+        
+    orcamento = Orcamento(saldo)
+    orcamento.remover_transacao(transacao_removida)
+    transacoes = [transacao for transacao in transacoes if transacao.id != id_transacao]
+    salvar_dados(transacoes, orcamento.saldo_atual())
+    return True

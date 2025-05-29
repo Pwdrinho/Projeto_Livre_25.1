@@ -17,18 +17,18 @@ class RegistroDeCategorias:
 
   
 class Categoria: # Abstração para manipulação de categorias
-    """Classe para manipulação de categorias de transações financeiras."""
+    #Classe para manipulação de categorias de transações financeiras.
     @staticmethod
     def todas() -> list[str]:
-        """Retorna todas as categorias registradas."""
+        #Retorna todas as categorias registradas.
         return RegistroDeCategorias.listar_categorias()
     
     @staticmethod
     def existe(categoria: str) -> bool:
-        """Verifica se uma categoria existe."""
+        #Verifica se uma categoria existe.
         return RegistroDeCategorias.existe(categoria)
     
     @staticmethod
     def registrar(categoria: str) -> str:
-        """Registra uma nova categoria."""
+        #Registra uma nova categoria.
         return RegistroDeCategorias.registrar(categoria)

@@ -28,10 +28,10 @@ Este sistema permite **gerenciar receitas e despesas**, oferecendo uma visão cl
 ---
 ### ✅ Funcionalidades (escopo inicial)
 
-- [x]Cadastro de transações (receitas e despesas).
-- [ ]Visualização de transações.
-- [ ]Resumo financeiro (saldo, total de receitas e despesas).
-- [ ]Alertas financeiros (ex.: Saldo Negativo).
+- [x]Cadastro de transações (receitas/entrada e despesas/saida).
+- [ ]Visualização de transações. (Extrato)
+- [ ]Resumo financeiro (saldo atual).
+- [ ]Alertas financeiros (Saldo Negativo).
 - [ ]Serialização dos dados (salvar/carregar). num arquivo JSON
 - [ ]Interface gráfica com `tkinter`.
 
@@ -72,6 +72,12 @@ SistemaDeGestaoFinanceira/
 ├── main.py # Ponto de entrada, inicia a GUI
 ```
 
+
+### Requisitos
+
+```cmd
+pip install customtkinter
+```
 <!--
 ⚠️ deu ruim
 🔧 consertando
@@ -85,6 +91,9 @@ SistemaDeGestaoFinanceira/
 ⭐ commit normal
 ☁️ cloud
 >
+
+
+
 
 
 📦 packages/
@@ -232,3 +241,20 @@ utils	Suporte para serialização e utilitários
 gui	Interface gráfica com o usuário
 data	Persistência de dados em JSON
 Arquivos raiz	Documentação e execução (README.md, main.py)
+
+
+
+# trocar valuerrror
+#while True:
+#   valor = input("valor: "))
+#   if valor not in (int, float):
+#       print("Valor deve ser numérico. Tente novamente.")
+#   if (valor <= 0):
+#       print("Valor deve ser positivo. Tente novamente.")
+#   break
+#valor = (int(input("Valor: ")))
+#categoria = input("Categoria: ")    
+#tipo = input("Tipo: ")
+
+#obj = Transacao(valor, categoria, tipo)
+#print(obj)
