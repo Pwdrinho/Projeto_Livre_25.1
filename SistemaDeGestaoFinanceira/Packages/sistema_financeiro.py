@@ -1,5 +1,5 @@
-from serializacao import salvar_dados, carregar_dados
-from transacao import Transacao
+from .serializacao import salvar_dados, carregar_dados
+from .transacao import Transacao
 
 class GerenciadorTransacoes:
     def __init__(self):

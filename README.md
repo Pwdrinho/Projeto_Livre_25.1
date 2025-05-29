@@ -9,9 +9,21 @@ Este sistema permite **gerenciar receitas e despesas**, oferecendo uma visão cl
 
 ---
 ### 🎴 Casos de Uso
+ Nosso Ator Principal é um *Usuário* que gerencia suas finanças pessoais.
+ 1. Registrar Transação: Ator consegue registrar uma nova transação, informando.
+    - **Id** (gerado automaticamente e codificado em **Hex**)
+    - **Valor**
+    - **Data** (usando `datetime()`)
+    - **Categoria** (validada e/ou registrada automaticamente)
+    - **Tipo** (*"Entrada" ou "Saida"*)
 
+2. Extrato (Listar as Transações): Ator visualiza uma lista com todas as transações cadastradas ordenadas por data.
+    - Sistema carrega os dados salvos em *.json* e exibe em formato de listas.
 
+3. Excluir Transação: Ator tem opção de remover uma transação especifica pelo *id*.
 
+4. Visualizar Categorias Registradas: Ator pode consultar as categorias já existentes.
+4. Saldo e Alertas: Ator consegue ver o Saldo atualizado automaticamente conforme adição e/ou remoção de transações. Caso Saldo fique *Negativado* exibe um alerta na tela.
 
 ---
 ### ✅ Funcionalidades (escopo inicial)
@@ -43,7 +55,7 @@ Os dados são armazenados em um arquivo JSON localizado na pasta `data/`.
 
 ### 📂 Estrtura do Projeto
 ```yaml
-Sistema de Gestão Financeira/
+SistemaDeGestaoFinanceira/
 ├── Packages
 │   ├── sistema_financeiro.py
 │   ├── transacao.py
@@ -78,16 +90,19 @@ Sistema de Gestão Financeira/
 📦 packages/
 Contém as classes principais que modelam a lógica do negócio:
 
+serializacao.py
+Contém funções para salvar e carregar os dados do sistema usando JSON.
+Funções como salvar_em_json(objeto, arquivo) e carregar_de_json(arquivo) estarão aqui.
+
 transacao.py
 Define a classe Transacao e suas subclasses Receita e Despesa.
 Cada transação terá atributos como valor, data, categoria e descrição.
 
 orcamento.py
 Gerencia o conjunto de transações e calcula totais e saldo.
-Essa classe será responsável por adicionar, remover e listar transações, além de aplicar filtros.
 
 categoria.py
-Define e gerencia as categorias possíveis para as transações, como “Alimentação”, “Transporte”, “Salário”, etc.
+Registra, verifica e valida categorias.
 
 alertas.py
 Implementa a lógica de alertas financeiros, como avisar quando o usuário ultrapassa um limite definido em alguma categoria ou no orçamento total.
@@ -104,10 +119,6 @@ Tela/formulário para o usuário inserir uma nova transação (receita ou despes
 📁 data/
 transacoes.json
 Arquivo onde todas as transações serão armazenadas e carregadas em formato JSON.
-
-serializacao.py
-Contém funções para salvar e carregar os dados do sistema usando JSON.
-Funções como salvar_em_json(objeto, arquivo) e carregar_de_json(arquivo) estarão aqui.
 
 Arquivos principais fora das pastas:
 main.py

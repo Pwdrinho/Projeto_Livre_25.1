@@ -1,4 +1,4 @@
-from transacao import Transacao
+from .transacao import Transacao
 
 class Orcamento:
     """Classe responsável por gerenciar o saldo financeiro

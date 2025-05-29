@@ -1,4 +1,4 @@
-from Packages.orcamento import Orcamento
+from .orcamento import Orcamento
 
 class Alertas:
     def __init__(self, orcamento: Orcamento):
@@ -6,7 +6,7 @@ class Alertas:
 
     def alerta_orcamento_negativo(self) -> str | None:
         """Verifica se o orçamento está negativo e retorna um alerta."""
-        saldo = self.orcamento.calcular_saldo()
+        saldo = self.orcamento.saldo_atual()
         if saldo < 0:
             return "Alerta: O orçamento está negativo! (R$ {saldo:.2f})"
         return None
