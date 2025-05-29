@@ -28,12 +28,12 @@ Este sistema permite **gerenciar receitas e despesas**, oferecendo uma visão cl
 ---
 ### ✅ Funcionalidades (escopo inicial)
 
-- [x]Cadastro de transações (receitas/entrada e despesas/saida).
-- [ ]Visualização de transações. (Extrato)
-- [ ]Resumo financeiro (saldo atual).
-- [ ]Alertas financeiros (Saldo Negativo).
-- [ ]Serialização dos dados (salvar/carregar). num arquivo JSON
-- [ ]Interface gráfica com `tkinter`.
+- [x] Cadastro de transações (receitas/entrada e despesas/saida).
+- [x] Visualização de transações. (Extrato)
+- [x] Resumo financeiro (saldo atual).
+- [ ] Alertas financeiros (Saldo Negativo).
+- [x] Serialização dos dados (salvar/carregar). num arquivo JSON
+- [x] Interface gráfica com **[CustomTkinter](https://github.com/TomSchimansky/CustomTkinter)**.
 
 ---
 
@@ -62,14 +62,14 @@ SistemaDeGestaoFinanceira/
 │   ├── orcamento.py
 │   ├── categoria.py
 │   ├── serializacao.py   # Funções para salvar e carregar dados com JSON
-│   └── alertas.py
-├── Gui/
-│   ├── __init__.py
+│   ├── alertas.py
 │   └── app_gui.py
 ├── Data/
 │   └── transacoes.json   # Arquivo onde os dados serão salvos
 ├── README.md  <- Você está aqui!
 ├── main.py # Ponto de entrada, inicia a GUI
+├──.gitignore
+├──UML_SDGF.png
 ```
 
 
@@ -80,11 +80,11 @@ pip install customtkinter
 ```
 <!--
 ⚠️ deu ruim
-🔧 consertando
-⚙️ funcionando
-🪛 arrumando
+🔧 consertando: bugfix
+⚙️ funcionando: feat
+🪛 arrumando: bugfix / refactor
 🧻 deu merda
-📦 pacotes
+📦 pacotes: chore
 📧 email
 🔌 se ligar é sorte
 💾 salvando

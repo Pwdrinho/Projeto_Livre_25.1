@@ -1,7 +1,7 @@
 import customtkinter as ctk
-from Packages.serializacao import carregar_dados, salvar_dados, remover_dados
-from Packages.transacao import Transacao
-from Packages.orcamento import Orcamento
+from .serializacao import carregar_dados, salvar_dados, remover_dados
+from .transacao import Transacao
+from .orcamento import Orcamento
 
 class MainApp(ctk.CTk):
     def __init__(self):
@@ -49,7 +49,7 @@ class MainApp(ctk.CTk):
         
         # OptionMenu para tipo
         tipo_var = ctk.StringVar(value="Entrada")
-        tipo_menu = ctk.CTkOptionMenu(self.main_frame, variable=tipo_var, values=["Entrada", "Saída"])
+        tipo_menu = ctk.CTkOptionMenu(self.main_frame, variable=tipo_var, values=["Entrada", "Saida"])
         tipo_menu.pack(pady=5)
         
         categoria_entry = ctk.CTkEntry(self.main_frame, placeholder_text="Categoria")
@@ -82,12 +82,11 @@ class MainApp(ctk.CTk):
         msg_label.pack(pady=5)
 
         def remover():
-            id_remover = id_entry.get().strip()
+            id_remover = id_entry.get().strip().upper()
+            print(id_remover)
             if remover_dados(id_remover):
                 self.transacoes, saldo = carregar_dados()
                 self.orcamento = Orcamento(saldo)
-                for t in self.transacoes:
-                    self.orcamento.adicionar_transacao(t)
                 self.atualizar_saldo()
                 msg_label.configure(text="Transação removida!", text_color="green")
             else:

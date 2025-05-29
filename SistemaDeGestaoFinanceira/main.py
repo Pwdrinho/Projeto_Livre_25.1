@@ -1,6 +1,8 @@
-from Packages import Transacao
-from Packages import Orcamento
-from Packages import Alertas
+import customtkinter as ctk
+from Packages.app_gui import *
 
-class Main:
-    pass
+
+if __name__ == "__main__":
+    ctk.set_appearance_mode("light")
+    app = MainApp()
+    app.mainloop()

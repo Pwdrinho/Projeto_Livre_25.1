@@ -5,7 +5,7 @@ from .transacao import Transacao
 from .categoria import Categoria
 from .orcamento import Orcamento
 
-Caminho_arquivo = "SistemaDeGestaoFinanceira/Data/transacoes.json"
+Caminho_arquivo = os.path.join(os.path.dirname(__file__), "../Data/transacoes.json")
 
 def salvar_dados(transacoes: list[Transacao], saldo: float) -> None:
     # Salva as transações e o saldo em um arquivo JSON.
@@ -20,14 +20,20 @@ def salvar_dados(transacoes: list[Transacao], saldo: float) -> None:
 def carregar_dados() -> tuple[list[Transacao], float]:
     # Carrega as transações e o saldo de um arquivo JSON.
     if not os.path.exists(Caminho_arquivo):
+        print("Erro - Caminho não existe.")
         return [], 0.0
     try:
         with open(Caminho_arquivo, 'r', encoding='utf-8') as arquivo:
+            print("[JSON] Abrindo arquivo...")
             conteudo = arquivo.read().strip()
+            print("[JSON] Lendo arquivo...")
             if not conteudo:  # Verifica se o arquivo está vazio
+                # print("Erro - Não foi possível ler o arquivo.")
                 return [], 0.0
-            dados = json.load(arquivo)
+            dados = json.loads(conteudo)
+            print("[JSON] Carregando dados...")
     except (json.JSONDecodeError, FileNotFoundError):
+        # print("Erro - Não foi possível abrir JSON.")
         return [], 0.0
 
     saldo = dados.get("saldo", 0.0)

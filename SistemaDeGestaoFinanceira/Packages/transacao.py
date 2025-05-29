@@ -32,10 +32,7 @@ class Transacao: #classe base
         if not isinstance(categoria, str) or not categoria.strip():
             raise ValueError("Categoria não pode ser vazia.")
         
-        categoria_padronizada = Categoria.registrar(categoria)
-
-        print(f"Categoria '{categoria_padronizada}' adicionada ao registro.")
-        
+        categoria_padronizada = Categoria.registrar(categoria) 
         return categoria_padronizada
 
     @staticmethod
