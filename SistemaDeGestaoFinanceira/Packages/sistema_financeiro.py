@@ -27,23 +27,3 @@ class GerenciadorTransacoes(LogConsoleMixin):
                 self.saldo += transacao.valor
             Serializador.salvar_dados(self.transacoes, self.saldo)
             self.mostrar_log(f"Transação removida: {transacao}")
-
-
-
-
-
-
-
-
-
-
-# Gerar transação com classe Transacao
-# Guardar valores do objeto criado
-# Dar dump nesses valores num JSON com o seguinte formato:
-# {
-#   "id": "1234",
-#   "valor": 100.0,
-#   "data": "2023-10-01",
-#   "categoria": "Alimentação",
-#   "descricao": "Compra de supermercado"
-#}

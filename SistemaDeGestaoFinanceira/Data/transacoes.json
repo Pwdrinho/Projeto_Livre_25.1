@@ -1,18 +1,18 @@
 {
-    "saldo": 0.0,
+    "saldo": -100.0,
     "transacoes": [
         {
-            "id": "977E",
-            "valor": 200.0,
-            "data": "2025-05-30T08:09:12.398087",
-            "categoria": "CAT",
+            "id": "22DD",
+            "valor": 50.0,
+            "data": "2025-05-30T15:19:31.152800",
+            "categoria": "C",
             "tipo": "Entrada"
         },
         {
-            "id": "002C",
-            "valor": 200.0,
-            "data": "2025-05-30T08:09:16.720724",
-            "categoria": "CAT",
+            "id": "FC5C",
+            "valor": 150.0,
+            "data": "2025-05-30T15:19:36.400449",
+            "categoria": "C",
             "tipo": "Saida"
         }
     ]
