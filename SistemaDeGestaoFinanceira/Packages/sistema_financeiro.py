@@ -1,18 +1,18 @@
-from .serializacao import salvar_dados, carregar_dados, remover_dados
+from .serializacao import Serializador
 from .transacao import Transacao
 
 class GerenciadorTransacoes:
     def __init__(self):
-        self.transacoes, saldo_inicial = carregar_dados()
+        self.transacoes, saldo_inicial = Serializador.carregar_dados()
         self.saldo = saldo_inicial
 
     def adicionar_transacao(self, transacao: Transacao):
         self.transacoes.append(transacao)
         if transacao.tipo == "ENTRADA":
             self.saldo += transacao.valor
-        else:
+        elif transacao.tipo == "SAIDA":
             self.saldo -= transacao.valor
-        salvar_dados(self.transacoes, self.saldo)
+        Serializador.salvar_dados(self.transacoes, self.saldo)
 
     def remover_transacao(self, id_transacao: str):
         transacao = next((t for t in self.transacoes if t.id == id_transacao), None)
@@ -22,7 +22,7 @@ class GerenciadorTransacoes:
                 self.saldo -= transacao.valor
             else:
                 self.saldo += transacao.valor
-            salvar_dados(self.transacoes, self.saldo)
+            Serializador.salvar_dados(self.transacoes, self.saldo)
 
 
 
