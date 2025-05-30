@@ -3,10 +3,12 @@ from .serializacao import Serializador
 from .transacao import Transacao
 from .orcamento import Orcamento
 from .alertas import Alerta
+from .mixinlog import LogConsoleMixin
 
-class MainApp(ctk.CTk):
+class MainApp(ctk.CTk, LogConsoleMixin):
     def __init__(self):
         super().__init__()
+        self.mostrar_log("Interface gráfica iniciada.")
         self.title("Sistema de Gestão Financeira")
         self.geometry("800x600")
         self.resizable(False, False)
@@ -17,6 +19,7 @@ class MainApp(ctk.CTk):
         for t in self.transacoes:
             self.orcamento.adicionar_transacao(t)
         self.alerta = Alerta(self.orcamento)
+        self.alerta_aberto = False
 
         # Saldo sempre visível
         self.saldo_label = ctk.CTkLabel(self, text="", font=("Arial", 22, "bold"))
@@ -88,10 +91,10 @@ class MainApp(ctk.CTk):
 
         def remover():
             id_remover = id_entry.get().strip().upper()
-            print(id_remover)
             if Serializador.remover_dados(id_remover):
                 self.transacoes, saldo = Serializador.carregar_dados()
                 self.orcamento = Orcamento(saldo)
+                self.alerta = Alerta(self.orcamento)
                 self.atualizar_saldo()
                 msg_label.configure(text="Transação removida!", text_color="green")
             else:
@@ -113,6 +116,9 @@ class MainApp(ctk.CTk):
                 ).pack(anchor="w", padx=10)
 
     def mostrar_alerta(self, mensagem):
+        if self.alerta_aberto:
+            return
+        self.alerta_aberto = True
         popup = ctk.CTkToplevel(self)
         popup.title("Alerta de Saldo Negativo")
         popup.geometry("350x120")
@@ -126,7 +132,10 @@ class MainApp(ctk.CTk):
 
         ctk.CTkLabel(popup, text="⚠️", text_color="black", font=("Arial", 40, "bold")).pack(pady=5)
         ctk.CTkLabel(popup, text=mensagem, text_color="red", font=("Arial", 14, "bold")).pack(pady=5)
-        ctk.CTkButton(popup, text="OK", command=popup.destroy).pack(pady=5)
+        def fechar():
+            self.alerta_aberto = False
+            popup.destroy()
+        ctk.CTkButton(popup, text="OK", command=fechar).pack(pady=5)
 
 if __name__ == "__main__":
     ctk.set_appearance_mode("light")

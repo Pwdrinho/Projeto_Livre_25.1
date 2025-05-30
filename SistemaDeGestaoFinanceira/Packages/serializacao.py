@@ -3,8 +3,9 @@ import os
 from .transacao import Transacao
 from .categoria import Categoria
 from .orcamento import Orcamento
+from .mixinlog import LogConsoleMixin
 
-class Serializador:
+class Serializador(LogConsoleMixin):
     CAMINHO_ARQUIVO = os.path.join(os.path.dirname(__file__), "../Data/transacoes.json")
 
     @classmethod
@@ -17,6 +18,7 @@ class Serializador:
         os.makedirs(os.path.dirname(cls.CAMINHO_ARQUIVO), exist_ok=True)  # Garante que o diretório exista
         with open(cls.CAMINHO_ARQUIVO, 'w', encoding='utf-8') as arquivo:
             json.dump(dados, arquivo, ensure_ascii=False, indent=4)
+            cls().mostrar_log("Dados salvos no JSON.")
 
     @classmethod
     def carregar_dados(cls) -> tuple[list[Transacao], float]:
@@ -26,14 +28,14 @@ class Serializador:
             return [], 0.0
         try:
             with open(cls.CAMINHO_ARQUIVO, 'r', encoding='utf-8') as arquivo:
-                print("[JSON] Abrindo arquivo...")
+                #print("[JSON] Abrindo arquivo...")
                 conteudo = arquivo.read().strip()
-                print("[JSON] Lendo arquivo...")
+                #print("[JSON] Lendo arquivo...")
                 if not conteudo:  # Verifica se o arquivo está vazio
                     # print("Erro - Não foi possível ler o arquivo.")
                     return [], 0.0
                 dados = json.loads(conteudo)
-                print("[JSON] Carregando dados...")
+                #print("[JSON] Carregando dados...")
         except (json.JSONDecodeError, FileNotFoundError):
             # print("Erro - Não foi possível abrir JSON.")
             return [], 0.0
@@ -48,10 +50,12 @@ class Serializador:
                 transacoes.append(transacao)
             except Exception as e:
                 print(f"Erro ao carregar transação: {e} - Dados: {transacao_dict}")
+        cls().mostrar_log("Dados carregados do JSON.")
         return transacoes, saldo
 
     @classmethod
     def remover_dados(cls, id_transacao: str)-> bool:
+        id_transacao = id_transacao.upper()
         transacoes, saldo = cls.carregar_dados()
         transacao_removida = None
         for transacao in transacoes:

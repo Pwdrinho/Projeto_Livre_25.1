@@ -4,7 +4,7 @@ class RegistroDeCategorias:
     @classmethod
     def registrar(cls, categoria: str) -> str:
         categoria_padronizada = categoria.strip().lower().upper()
-        if categoria_padronizada in cls._categorias:
+        if categoria_padronizada not in cls._categorias:
             cls._categorias.add(categoria_padronizada)
             print(f"Categoria '{categoria_padronizada}' adicionada ao registro.")
         return categoria_padronizada
