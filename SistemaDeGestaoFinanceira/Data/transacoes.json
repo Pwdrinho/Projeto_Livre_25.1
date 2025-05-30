@@ -1,0 +1,19 @@
+{
+    "saldo": 0.0,
+    "transacoes": [
+        {
+            "id": "977E",
+            "valor": 200.0,
+            "data": "2025-05-30T08:09:12.398087",
+            "categoria": "CAT",
+            "tipo": "Entrada"
+        },
+        {
+            "id": "002C",
+            "valor": 200.0,
+            "data": "2025-05-30T08:09:16.720724",
+            "categoria": "CAT",
+            "tipo": "Saida"
+        }
+    ]
+}

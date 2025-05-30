@@ -81,6 +81,7 @@ SistemaDeGestaoFinanceira/
 ├──.gitignore
 ├── README.md  <- Você está aqui!
 ├──UML_SDGF.png
+├──UML_SDGF.drawio # Diagrama de classes utilizando .Drawio
 ```
 
 
@@ -103,6 +104,16 @@ pip install customtkinter
 ```cmd
 python main.py
 ```
+---
+
+## 👤 Autor
+<center><a href="https://github.com/Pwdrinho"> Pedro Lucas  </a></center>
+
+- Estudante de Engenharia de Software - Universidade de Brasilia | UNB Campus Gama (FCTE)
+
+- Projeto acadêmico de prática orientado à objetos em Python, utilizando JSON e Interface Gráfica simples(GUI).
+
+---
 
 <!-- infos para commit
 ⚠️ deu ruim
@@ -117,3 +128,4 @@ python main.py
 ⭐ commit normal
 ☁️ cloud
 >
+
