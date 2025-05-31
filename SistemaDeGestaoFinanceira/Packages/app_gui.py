@@ -21,8 +21,6 @@ class MainApp(ctk.CTk, LogConsoleMixin):
         # Dados iniciais
         self.transacoes, self.saldo = Serializador.carregar_dados()
         self.orcamento = Orcamento(self.saldo)
-        for t in self.transacoes:
-            self.orcamento.adicionar_transacao(t)
         self.alerta = Alerta(self.orcamento)
         self.alerta_aberto = False
 
@@ -198,6 +196,8 @@ class MainApp(ctk.CTk, LogConsoleMixin):
         popup.geometry("350x120")
         popup.attributes("-topmost", True)
         popup.grab_set()
+        popup.resizable (False, False)
+
         popup.protocol("WM_DELETE_WINDOW", lambda: None)
 
         self.update_idletasks()
